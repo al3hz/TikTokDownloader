@@ -31,26 +31,22 @@ app = Client("JayBee", bot_token=bot_token, api_id=api,
 
 @app.on_message(filters.command('start'))
 def start(client, message):
-    app.send_message(chat_id=message.from_user.id, text=f"Hola, soy **TikTok Downloader Bot**.\nPuedo descargar videos de TikTok sin Marca de Agua.\n\n"
+    app.send_message(chat_id=message.from_user.id, text=f"Hola, soy **TikTok Downloader**.\nPuedo descargar videos de TikTok sin Marca de Agua.\n\n"
                      "__**Developer :**__ __@Overlain__\n",
                      parse_mode='md')
 
 
 @app.on_message(filters.command('help'))
 def help(client, message):
-    kb = [[InlineKeyboardButton('Channel 🛡', url=chnnl), InlineKeyboardButton(
-        'Repo 🔰', url="https://github.com/TerminalWarlord/TikTok-Downloader-Bot/")]]
-    reply_markup = InlineKeyboardMarkup(kb)
-    app.send_message(chat_id=message.from_user.id, text=f"Hello there, I am **TikTok Downloader Bot**.\nI can download any TikTok video from a given link.\n\n"
-                     "__Send me a TikTok video link__",
-                     parse_mode='md',
-                     reply_markup=reply_markup)
+    app.send_message(chat_id=message.from_user.id, text=f"Hola, soy **TikTok Downloader**.\nPuedo descargar cualquier video de TikTok desde un enlace dado.\n\n"
+                     "__Envíame un enlace a un vídeo de TikTok__",
+                     parse_mode='md')
 
 
 @app.on_message((filters.regex("http://") | filters.regex("https://")) & (filters.regex('tiktok') | filters.regex('douyin')))
 def tiktok_dl(client, message):
     a = app.send_message(chat_id=message.chat.id,
-                         text='__Downloading File to the Server__',
+                         text='__Descarga de archivos al servidor__',
                          parse_mode='md')
     link = re.findall(r'\bhttps?://.*[(tiktok|douyin)]\S+', message.text)[0]
     link = link.split("?")[0]
@@ -92,16 +88,16 @@ def tiktok_dl(client, message):
                 if show == 1:
                     try:
                         a.edit(f'__**URL :**__ __{message.text}__\n'
-                               f'__**Total Size :**__ __{total_size} MB__\n'
-                               f'__**Downloaded :**__ __{percent}%__\n',
+                               f'__**Tamaño total :**__ __{total_size} MB__\n'
+                               f'__**Descargado :**__ __{percent}%__\n',
                                disable_web_preview=False)
                     except:
                         pass
                     if percent == 100:
                         show = 0
 
-        a.edit(f'__Downloaded to the server!\n'
-               f'Uploading to Telegram Now ⏳__')
+        a.edit(f'__¡Descargado en el servidor!\n'
+               f'Subiendo a Telegram ⏳__')
         start = time.time()
         title = filename
         app.send_document(chat_id=message.chat.id,
