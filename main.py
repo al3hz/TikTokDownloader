@@ -1,20 +1,12 @@
-# Copyright 2021 TerminalWarlord under the terms of the MIT
-# license found at https://github.com/TerminalWarlord/TikTok-Downloader-Bot/blob/master/LICENSE
-# Encoding = 'utf-8'
-# Fork and Deploy, do not modify this repo and claim it yours
-# For collaboration mail me at dev.jaybee@gmail.com
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultArticle, InputTextMessageContent
 import shutil
 import requests
-import json
 import os
 import re
 from bs4 import BeautifulSoup as bs
 import time
 from datetime import timedelta
-import math
-import base64
 from progress_bar import progress, TimeFormatter, humanbytes
 from dotenv import load_dotenv
 
